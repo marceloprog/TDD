@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{115CF229-C23F-48BD-9D88-342D87C8163D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="APIServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ClientTarefas.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TarefasTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="APIServer">
+        <MSBuild Projects="APIServer.dproj"/>
+    </Target>
+    <Target Name="APIServer:Clean">
+        <MSBuild Projects="APIServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="APIServer:Make">
+        <MSBuild Projects="APIServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClientTarefas">
+        <MSBuild Projects="ClientTarefas.dproj"/>
+    </Target>
+    <Target Name="ClientTarefas:Clean">
+        <MSBuild Projects="ClientTarefas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClientTarefas:Make">
+        <MSBuild Projects="ClientTarefas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TarefasTest">
+        <MSBuild Projects="TarefasTest.dproj"/>
+    </Target>
+    <Target Name="TarefasTest:Clean">
+        <MSBuild Projects="TarefasTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TarefasTest:Make">
+        <MSBuild Projects="TarefasTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="APIServer;ClientTarefas;TarefasTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="APIServer:Clean;ClientTarefas:Clean;TarefasTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="APIServer:Make;ClientTarefas:Make;TarefasTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
